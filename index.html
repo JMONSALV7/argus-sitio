@@ -58,6 +58,8 @@ section { padding: 88px 0; }
 .logo small { font: 600 .66rem/1 "DM Sans", sans-serif; color: var(--tenue); letter-spacing: .04em; }
 .menu { display: flex; gap: 26px; margin-left: auto; font-size: .95rem; color: var(--tenue); }
 .menu a:hover { color: var(--texto); }
+.menu a.entrar { color: var(--texto); font-weight: 600; padding-left: 22px; border-left: 1px solid #3A414A; }
+.menu a.entrar:hover { color: var(--naranja); }
 .abrir-menu { display: none; margin-left: auto; background: none; border: 0; color: var(--texto); padding: 8px; cursor: pointer; }
 
 /* Portada. */
@@ -203,6 +205,7 @@ footer a:hover { color: var(--naranja); }
     .pasos, .planes { grid-template-columns: 1fr; }
     .menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--grafito); flex-direction: column; gap: 0; padding: 8px 20px 16px; border-bottom: 2px solid var(--naranja); }
     .menu.abierto { display: flex; } .menu a { padding: 12px 0; border-bottom: 1px solid var(--linea); }
+    .menu a.entrar { padding-left: 0; border-left: 0; color: var(--naranja); }
     .abrir-menu { display: block; } .barra .boton { display: none; }
 }
 @media (max-width: 600px) {
@@ -230,6 +233,8 @@ footer a:hover { color: var(--naranja); }
             <a href="#profesional">Profesional</a>
             <a href="#planes">Planes</a>
             <a href="#preguntas">Preguntas</a>
+            <!-- La plataforma: pasará a https://argusapp.tecnologianaranja.digital cuando ese nombre esté activo. -->
+            <a class="entrar" href="https://argos.tecnologianaranja.digital/">Iniciar sesión</a>
         </nav>
         <a class="boton principal chico" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20una%20demostraci%C3%B3n%20de%20Argus" target="_blank" rel="noopener">Solicitar demostración</a>
         <button class="abrir-menu" aria-label="Abrir el menú" aria-controls="menu" aria-expanded="false">
