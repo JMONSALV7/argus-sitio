@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argus · Todos los equipos de su empresa, vigilados en un solo panel | Tecnología Naranja Digital</title>
+<meta name="description" content="Argus vigila los computadores, servidores, firewalls y sitios web de su empresa: actualizaciones, vulnerabilidades, ataques, protección, hardware y productividad en un solo panel. Planes Estándar y Profesional.">
+<meta property="og:title" content="Argus · Todos los equipos de su empresa, vigilados en un solo panel">
+<meta property="og:description" content="Actualizaciones, vulnerabilidades, ataques, protección y productividad de todo su parque de equipos, en un solo lugar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://argus.tecnologianaranja.digital/">
+<link rel="canonical" href="https://argus.tecnologianaranja.digital/">
+<meta name="theme-color" content="#0D141A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M6 36 Q32 8 58 36 Q32 64 6 36 Z' fill='none' stroke='%23EC8200' stroke-width='5' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='36' r='9.5' fill='%23EC8200'/%3E%3Ccircle cx='32' cy='36' r='3.8' fill='%231D1E20'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* La misma imagen de la plataforma: tema oscuro de Argus, naranja de Tecnología Naranja, Outfit en títulos y DM Sans en texto. */
+:root {
+    --naranja: #EC8200; --naranja-osc: #D47400; --crema: #FFEACC;
+    --noche: #0D141A; --grafito: #1D1E20; --tarjeta: #171C22; --tarjeta-2: #1B2128; --linea: #2A313A;
+    --texto: #E6E7E9; --tenue: #A3A8AF; --apagado: #6E757D;
+    --rojo: #E5484D; --ambar: #F2B705; --verde: #3FB950; --azul: #4C9AFF; --morado: #8E7BEF;
+    --radio: 14px; --ancho: 1180px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--noche); color: var(--texto); font: 400 17px/1.6 "DM Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: Outfit, "DM Sans", sans-serif; line-height: 1.15; margin: 0; letter-spacing: -.01em; }
+h1 { font-size: clamp(2.2rem, 5.2vw, 3.9rem); font-weight: 700; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); font-weight: 600; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+.contenedor { width: min(var(--ancho), 100% - 40px); margin-inline: auto; }
+.naranja { color: var(--naranja); }
+.etiqueta { display: inline-block; font: 600 .78rem/1 "DM Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--naranja); margin-bottom: 14px; }
+.sub { color: var(--tenue); font-size: 1.1rem; max-width: 640px; }
+section { padding: 88px 0; }
+.centro { text-align: center; } .centro .sub { margin-inline: auto; }
+
+/* Botones: el principal naranja relleno, como en la plataforma. */
+.boton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 1rem/1 "DM Sans", sans-serif; padding: 15px 24px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; transition: background .15s, border-color .15s, transform .15s; white-space: nowrap; }
+.boton:active { transform: translateY(1px); }
+.boton.principal { background: var(--naranja); color: #fff; }
+.boton.principal:hover { background: var(--naranja-osc); }
+.boton.borde { border-color: #4A525C; color: var(--texto); }
+.boton.borde:hover { border-color: var(--naranja); color: var(--naranja); }
+.boton.chico { padding: 11px 18px; font-size: .92rem; }
+
+/* Barra de arriba: grafito con la línea naranja, la de Argus. */
+.barra { position: sticky; top: 0; z-index: 50; background: rgba(29, 30, 32, .94); backdrop-filter: blur(8px); border-bottom: 2px solid var(--naranja); }
+.barra .contenedor { display: flex; align-items: center; gap: 28px; height: 68px; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo svg { width: 40px; height: 40px; }
+.logo b { font: 700 1.45rem/1 Outfit, sans-serif; letter-spacing: .06em; display: block; }
+.logo small { font: 600 .66rem/1 "DM Sans", sans-serif; color: var(--tenue); letter-spacing: .04em; }
+.menu { display: flex; gap: 26px; margin-left: auto; font-size: .95rem; color: var(--tenue); }
+.menu a:hover { color: var(--texto); }
+.abrir-menu { display: none; margin-left: auto; background: none; border: 0; color: var(--texto); padding: 8px; cursor: pointer; }
+
+/* Portada. */
+.portada { padding: 76px 0 40px; background: radial-gradient(900px 480px at 78% -8%, rgba(236, 130, 0, .2), transparent 62%), radial-gradient(700px 420px at 0% 30%, rgba(76, 154, 255, .07), transparent 60%); overflow: hidden; }
+.portada-rejilla { display: grid; grid-template-columns: 1fr 1.08fr; gap: 52px; align-items: center; }
+.portada p.sub { margin: 22px 0 30px; font-size: 1.18rem; }
+.acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+.confianza { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; color: var(--tenue); font-size: .92rem; }
+.confianza span::before { content: "✓"; color: var(--verde); font-weight: 700; margin-right: 7px; }
+
+/* Maquetas del panel: dibujadas aquí, con datos de demostración. */
+.maqueta { background: var(--grafito); border: 1px solid var(--linea); border-radius: 16px; box-shadow: 0 30px 80px rgba(0, 0, 0, .55); overflow: hidden; font-size: 13px; line-height: 1.35; }
+.maqueta-barra { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #1D1E20; border-bottom: 2px solid var(--naranja); }
+.maqueta-barra svg { width: 22px; height: 22px; }
+.maqueta-barra b { font: 700 .9rem/1 Outfit, sans-serif; letter-spacing: .06em; }
+.maqueta-barra i { margin-left: auto; font-style: normal; font-size: 11px; color: var(--tenue); border: 1px solid #3A414A; border-radius: 6px; padding: 4px 8px; }
+.maqueta-cuerpo { background: var(--noche); padding: 14px; display: grid; gap: 10px; }
+.aviso { background: rgba(229, 72, 77, .13); border-left: 3px solid var(--rojo); border-radius: 8px; padding: 9px 12px; color: #F3D6D7; }
+.fila { display: grid; gap: 10px; }
+.fila.dos { grid-template-columns: 1.15fr 1fr; } .fila.tres { grid-template-columns: repeat(3, 1fr); }
+.t { background: var(--tarjeta); border-radius: 10px; padding: 12px; border-top: 2px solid var(--c, var(--linea)); min-width: 0; }
+.t h4 { font: 600 12.5px/1.2 "DM Sans", sans-serif; margin-bottom: 9px; color: var(--texto); }
+.t small { color: var(--tenue); font-size: 11px; display: block; margin-top: 7px; }
+.dona { display: flex; align-items: center; gap: 12px; }
+.dona svg { width: 66px; height: 66px; flex: none; }
+.leyenda { display: grid; gap: 4px; font-size: 11.5px; color: var(--tenue); }
+.leyenda b { color: var(--texto); }
+.p { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; background: var(--c); }
+.barras { display: flex; align-items: flex-end; gap: 3px; height: 56px; }
+.barras span { flex: 1; background: var(--verde); border-radius: 2px 2px 0 0; min-height: 3px; }
+.barras span.r { background: var(--rojo); }
+.grande { font: 700 26px/1 Outfit, sans-serif; }
+.lista { display: grid; gap: 6px; }
+.lista div { border-left: 2px solid var(--c, var(--rojo)); padding-left: 8px; }
+.lista b { display: block; font-weight: 600; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lista span { color: var(--tenue); font-size: 11px; }
+.medida { display: grid; grid-template-columns: 82px 1fr 16px; gap: 8px; align-items: center; font-size: 11.5px; color: var(--tenue); margin-top: 6px; }
+.medida i { height: 5px; border-radius: 3px; background: #2A313A; position: relative; overflow: hidden; }
+.medida i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--v); background: var(--c); border-radius: 3px; }
+.demo { text-align: center; color: var(--apagado); font-size: .8rem; margin-top: 12px; }
+
+/* Preguntas que responde. */
+.preguntas { padding: 34px 0 10px; }
+.preguntas-rejilla { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.pregunta { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: var(--radio); padding: 20px; }
+.pregunta b { display: block; font: 600 1.02rem/1.3 Outfit, sans-serif; margin-bottom: 6px; }
+.pregunta span { color: var(--tenue); font-size: .93rem; }
+
+/* Tarjetas de lo que vigila. */
+.rejilla { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 44px; }
+.tarjeta { background: var(--tarjeta); border: 1px solid var(--linea); border-top: 3px solid var(--c, var(--naranja)); border-radius: var(--radio); padding: 24px; transition: transform .15s, border-color .15s; }
+.tarjeta:hover { transform: translateY(-3px); border-color: #3A434E; border-top-color: var(--c, var(--naranja)); }
+.tarjeta .icono { width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--c, var(--naranja)) 16%, transparent); color: var(--c, var(--naranja)); margin-bottom: 14px; }
+.tarjeta .icono svg { width: 22px; height: 22px; }
+.tarjeta p { color: var(--tenue); font-size: .96rem; margin-top: 8px; }
+
+/* Bloques de dos columnas (texto y maqueta). */
+.bloque { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.bloque + .bloque { margin-top: 96px; }
+.bloque.inverso > :first-child { order: 2; }
+.puntos { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+.puntos li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; color: var(--tenue); }
+.puntos li b { color: var(--texto); }
+.puntos li::before { content: ""; width: 22px; height: 22px; border-radius: 50%; margin-top: 2px; background: rgba(236, 130, 0, .16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EC8200' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 13px no-repeat; }
+.franja { background: #10181F; border-block: 1px solid var(--linea); }
+
+/* Maquetas del plan Profesional. */
+.chat { display: grid; gap: 8px; }
+.burbuja { max-width: 84%; padding: 9px 12px; border-radius: 12px; background: var(--tarjeta-2); border: 1px solid var(--linea); }
+.burbuja.mia { margin-left: auto; background: rgba(236, 130, 0, .14); border-color: rgba(236, 130, 0, .4); }
+.burbuja small { display: block; color: var(--tenue); font-size: 10.5px; margin-bottom: 3px; }
+.pastilla { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: color-mix(in srgb, var(--c) 18%, transparent); color: var(--c); }
+.pro { display: inline-block; font: 600 .7rem/1 "DM Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--naranja); border: 1px solid rgba(236, 130, 0, .55); border-radius: 99px; padding: 5px 10px; vertical-align: middle; margin-left: 8px; }
+.interruptor { width: 26px; height: 14px; border-radius: 99px; background: #3A414A; position: relative; flex: none; }
+.interruptor::after { content: ""; position: absolute; top: 2px; left: 2px; width: 10px; height: 10px; border-radius: 50%; background: #9AA1A9; }
+.interruptor.si { background: rgba(229, 72, 77, .45); } .interruptor.si::after { left: 14px; background: var(--rojo); }
+.servicio { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #222931; }
+.servicio:last-child { border: 0; } .servicio span { color: var(--tenue); font-size: 11px; margin-left: auto; }
+
+/* Pasos. */
+.pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 44px; counter-reset: paso; }
+.paso { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: var(--radio); padding: 26px; counter-increment: paso; }
+.paso::before { content: counter(paso); display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--naranja); color: #fff; font: 700 1.1rem/1 Outfit, sans-serif; margin-bottom: 16px; }
+.paso p { color: var(--tenue); margin-top: 8px; font-size: .97rem; }
+.integra { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
+.integra span { border: 1px solid var(--linea); background: var(--tarjeta); border-radius: 99px; padding: 8px 16px; font-size: .9rem; color: var(--tenue); }
+
+/* Planes. */
+.planes { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 46px; align-items: stretch; }
+.plan { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 18px; padding: 32px; display: flex; flex-direction: column; position: relative; }
+.plan.destacado { border: 2px solid var(--naranja); background: linear-gradient(180deg, rgba(236, 130, 0, .1), var(--tarjeta) 42%); }
+.plan .cinta { position: absolute; top: -13px; right: 26px; background: var(--naranja); color: #fff; font: 700 .72rem/1 "DM Sans", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 99px; }
+.plan h3 { font-size: 1.6rem; }
+.plan .para { color: var(--tenue); margin: 8px 0 18px; }
+.plan .precio { font: 600 1.05rem/1.4 Outfit, sans-serif; padding: 14px 0; border-block: 1px solid var(--linea); margin-bottom: 18px; }
+.plan .precio small { display: block; font: 400 .88rem/1.4 "DM Sans", sans-serif; color: var(--tenue); }
+.plan ul { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 11px; flex: 1; align-content: start; }
+.plan li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; color: var(--tenue); font-size: .97rem; }
+.plan li::before { content: "✓"; color: var(--verde); font-weight: 700; }
+.plan li b { color: var(--texto); }
+.plan li.mas::before { content: "+"; color: var(--naranja); font-size: 1.15rem; line-height: 1.3; }
+.tabla-caja { margin-top: 36px; overflow-x: auto; border: 1px solid var(--linea); border-radius: var(--radio); }
+table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: .95rem; }
+th, td { padding: 13px 18px; text-align: left; border-bottom: 1px solid var(--linea); }
+th { font: 600 .95rem/1 Outfit, sans-serif; background: var(--tarjeta-2); }
+td:nth-child(n+2), th:nth-child(n+2) { text-align: center; width: 150px; }
+tr:last-child td { border-bottom: 0; }
+td.si { color: var(--verde); font-weight: 700; } td.no { color: var(--apagado); }
+tr.grupo td { background: #121A21; color: var(--naranja); font: 600 .78rem/1 "DM Sans", sans-serif; letter-spacing: .1em; text-transform: uppercase; text-align: left; }
+
+/* Confianza y preguntas frecuentes. */
+.seguro { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px; }
+.seguro div { border: 1px solid var(--linea); border-radius: var(--radio); padding: 20px; background: var(--tarjeta); }
+.seguro b { display: block; font: 600 1rem/1.3 Outfit, sans-serif; margin-bottom: 6px; }
+.seguro span { color: var(--tenue); font-size: .92rem; }
+.faq { max-width: 820px; margin: 40px auto 0; display: grid; gap: 10px; }
+details { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 12px; padding: 0 20px; }
+summary { cursor: pointer; padding: 18px 0; font: 600 1.03rem/1.3 Outfit, sans-serif; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--naranja); font-size: 1.4rem; line-height: .9; }
+details[open] summary::after { content: "–"; }
+details p { color: var(--tenue); padding-bottom: 18px; }
+
+/* Cierre y pie. */
+.cierre { text-align: center; padding: 90px 0; background: radial-gradient(700px 320px at 50% 0%, rgba(236, 130, 0, .2), transparent 70%); }
+.cierre .acciones { justify-content: center; margin-top: 28px; }
+footer { border-top: 1px solid var(--linea); padding: 34px 0 44px; color: var(--tenue); font-size: .9rem; }
+footer .contenedor { display: flex; flex-wrap: wrap; gap: 16px 34px; align-items: center; justify-content: space-between; }
+footer a:hover { color: var(--naranja); }
+
+/* Aparición suave al bajar. */
+/* Solo se esconde si el script corre (clase «js»): sin script, todo queda visible. */
+.js .ver { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.js .ver.visto { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .ver { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+@media (max-width: 980px) {
+    section { padding: 64px 0; }
+    .portada-rejilla, .bloque { grid-template-columns: 1fr; gap: 36px; }
+    .bloque.inverso > :first-child { order: 0; }
+    .preguntas-rejilla, .seguro { grid-template-columns: 1fr 1fr; }
+    .rejilla { grid-template-columns: 1fr 1fr; }
+    .pasos, .planes { grid-template-columns: 1fr; }
+    .menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--grafito); flex-direction: column; gap: 0; padding: 8px 20px 16px; border-bottom: 2px solid var(--naranja); }
+    .menu.abierto { display: flex; } .menu a { padding: 12px 0; border-bottom: 1px solid var(--linea); }
+    .abrir-menu { display: block; } .barra .boton { display: none; }
+}
+@media (max-width: 600px) {
+    body { font-size: 16px; }
+    .preguntas-rejilla, .seguro, .rejilla { grid-template-columns: 1fr; }
+    .fila.tres { grid-template-columns: 1fr 1fr; } .fila.tres .t:last-child { grid-column: 1 / -1; }
+    .fila.dos { grid-template-columns: 1fr; }
+    .acciones .boton { flex: 1 1 100%; }
+    .plan { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="barra">
+    <div class="contenedor">
+        <a class="logo" href="#inicio" aria-label="Argus, inicio">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="8.6" cy="20.5" r="2.2" fill="#EC8200" opacity=".45"/><circle cx="18.5" cy="10.6" r="2.2" fill="#EC8200" opacity=".7"/><circle cx="32" cy="7" r="2.4" fill="#EC8200"/><circle cx="45.5" cy="10.6" r="2.2" fill="#EC8200" opacity=".7"/><circle cx="55.4" cy="20.5" r="2.2" fill="#EC8200" opacity=".45"/><path d="M6 36 Q32 8 58 36 Q32 64 6 36 Z" fill="none" stroke="#EC8200" stroke-width="4" stroke-linejoin="round"/><circle cx="32" cy="36" r="9.5" fill="#EC8200"/><circle cx="32" cy="36" r="3.8" fill="#1D1E20"/><circle cx="35.2" cy="32.6" r="1.6" fill="#FFEACC"/></svg>
+            <span><b>ARGUS</b><small>by TND</small></span>
+        </a>
+        <nav class="menu" id="menu">
+            <a href="#vigila">Qué vigila</a>
+            <a href="#seguridad">Seguridad</a>
+            <a href="#productividad">Productividad</a>
+            <a href="#profesional">Profesional</a>
+            <a href="#planes">Planes</a>
+            <a href="#preguntas">Preguntas</a>
+        </nav>
+        <a class="boton principal chico" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20una%20demostraci%C3%B3n%20de%20Argus" target="_blank" rel="noopener">Solicitar demostración</a>
+        <button class="abrir-menu" aria-label="Abrir el menú" aria-controls="menu" aria-expanded="false">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+    </div>
+</header>
+
+<main id="inicio">
+
+<!-- Portada -->
+<section class="portada">
+    <div class="contenedor portada-rejilla">
+        <div>
+            <span class="etiqueta">Monitoreo de equipos para empresas</span>
+            <h1>Todos los equipos de su empresa, <span class="naranja">vigilados</span> en un solo panel.</h1>
+            <p class="sub">Argus revisa cada computador, servidor, firewall y sitio web y le dice, en lenguaje claro, qué está en riesgo, qué hay que actualizar y qué le está costando tiempo a su equipo.</p>
+            <div class="acciones">
+                <a class="boton principal" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20una%20demostraci%C3%B3n%20de%20Argus" target="_blank" rel="noopener">Solicitar una demostración</a>
+                <a class="boton borde" href="#planes">Ver los planes</a>
+            </div>
+            <div class="confianza">
+                <span>Sin servidores que instalar</span>
+                <span>Listo en minutos</span>
+                <span>Hecho en Colombia</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="maqueta" role="img" aria-label="Panel de Argus con datos de demostración: estado de los activos, ataques bloqueados, protección y fallas que se están atacando">
+                <div class="maqueta-barra">
+                    <svg viewBox="0 0 64 64"><path d="M6 36 Q32 8 58 36 Q32 64 6 36 Z" fill="none" stroke="#EC8200" stroke-width="5" stroke-linejoin="round"/><circle cx="32" cy="36" r="9.5" fill="#EC8200"/><circle cx="32" cy="36" r="3.8" fill="#1D1E20"/></svg>
+                    <b>ARGUS</b><i>Empresa Demo S.A.S.</i>
+                </div>
+                <div class="maqueta-cuerpo">
+                    <div class="aviso">De los <b>48 activos</b> que vigila Argus, 6 necesitan atención y 2 están en riesgo. Lo más urgente: 2 equipos tienen fallas que se están atacando.</div>
+                    <div class="fila dos">
+                        <div class="t" style="--c: var(--rojo)">
+                            <h4>Estado de los activos</h4>
+                            <div class="dona">
+                                <svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#2A313A" stroke-width="5"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#3FB950" stroke-width="5" stroke-dasharray="83 17" stroke-dashoffset="25"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#F2B705" stroke-width="5" stroke-dasharray="12.5 87.5" stroke-dashoffset="42"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#E5484D" stroke-width="5" stroke-dasharray="4.5 95.5" stroke-dashoffset="29.5"/><text x="21" y="24" text-anchor="middle" fill="#E6E7E9" font-size="8" font-weight="700" font-family="Outfit, sans-serif">83 %</text></svg>
+                                <div class="leyenda">
+                                    <span><i class="p" style="--c: var(--verde)"></i>Al día <b>40</b></span>
+                                    <span><i class="p" style="--c: var(--ambar)"></i>Atención <b>6</b></span>
+                                    <span><i class="p" style="--c: var(--rojo)"></i>En riesgo <b>2</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t" style="--c: var(--verde)">
+                            <h4>Ataques en las últimas 24 horas</h4>
+                            <div class="barras"><span style="height:30%"></span><span style="height:55%"></span><span style="height:22%"></span><span style="height:70%"></span><span style="height:40%"></span><span style="height:88%"></span><span style="height:35%"></span><span style="height:60%"></span><span style="height:48%"></span><span style="height:100%"></span><span style="height:28%"></span><span style="height:66%"></span><span style="height:52%"></span><span style="height:38%"></span></div>
+                            <small><i class="p" style="--c: var(--verde)"></i>312 ataques bloqueados, ninguno pasó</small>
+                        </div>
+                    </div>
+                    <div class="fila tres">
+                        <div class="t" style="--c: var(--rojo)">
+                            <h4>Fallas que se están atacando</h4>
+                            <div class="lista">
+                                <div><b>Navegador en PC-CONTABILIDAD-02</b><span>Actualizar hoy</span></div>
+                                <div><b>Windows en PORTATIL-VENTAS-07</b><span>Actualizar hoy</span></div>
+                            </div>
+                        </div>
+                        <div class="t" style="--c: var(--ambar)">
+                            <h4>Protección</h4>
+                            <svg viewBox="0 0 100 58" style="width:100%;max-width:120px;display:block;margin:auto"><path d="M10 52 A40 40 0 0 1 90 52" fill="none" stroke="#2A313A" stroke-width="9" stroke-linecap="round"/><path d="M10 52 A40 40 0 0 1 90 52" fill="none" stroke="#3FB950" stroke-width="9" stroke-linecap="round" stroke-dasharray="126" stroke-dashoffset="16"/><text x="50" y="50" text-anchor="middle" fill="#E6E7E9" font-size="17" font-weight="700" font-family="Outfit, sans-serif">87 %</text></svg>
+                            <small style="text-align:center">Antivirus, cifrado y firewall</small>
+                        </div>
+                        <div class="t" style="--c: var(--verde)">
+                            <h4>Tiempo perdido</h4>
+                            <div class="grande" style="color: var(--verde)">≈ 9 h al mes</div>
+                            <small>Por equipos lentos y fallas, en 5 equipos</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="demo">Vista del panel con datos de demostración.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Las preguntas que responde -->
+<section class="preguntas">
+    <div class="contenedor preguntas-rejilla">
+        <div class="pregunta ver"><b>¿Qué está en riesgo hoy?</b><span>Las fallas que ya se están atacando en internet y en qué equipos están.</span></div>
+        <div class="pregunta ver"><b>¿Qué hay que actualizar?</b><span>Sistemas y programas atrasados o que ya no tienen soporte del fabricante.</span></div>
+        <div class="pregunta ver"><b>¿Estamos protegidos?</b><span>Antivirus, cifrado de discos, firewall y copias de seguridad, equipo por equipo.</span></div>
+        <div class="pregunta ver"><b>¿Qué equipos hay que renovar?</b><span>Cuáles hacen perder tiempo y cuándo conviene cambiarlos, para presupuestar.</span></div>
+    </div>
+</section>
+
+<!-- Qué vigila -->
+<section id="vigila">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Qué vigila Argus</span>
+            <h2>Una sola herramienta para todo su parque de equipos</h2>
+            <p class="sub" style="margin-top:14px">Argus revisa cada equipo todos los días y convierte cientos de datos técnicos en una respuesta sencilla: al día, atención o en riesgo.</p>
+        </div>
+        <div class="rejilla">
+            <article class="tarjeta ver" style="--c: var(--azul)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg></div>
+                <h3>Actualizaciones y fin de soporte</h3>
+                <p>Windows, servidores y programas: qué versión tiene cada equipo, cuál es la vigente y cuándo el fabricante deja de darle soporte.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--rojo)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 3.9L2.5 17.5A2 2 0 004.2 20.5h15.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg></div>
+                <h3>Vulnerabilidades que se están atacando</h3>
+                <p>Compara lo instalado con la lista oficial de fallas que los atacantes ya están usando y le avisa primero de esas, las que no dan espera.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--verde)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                <h3>Protección de cada equipo</h3>
+                <p>Antivirus activo y al día, discos cifrados, firewall encendido, administradores de más y cumplimiento en Microsoft Intune.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--naranja)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+                <h3>Ataques en tiempo casi real</h3>
+                <p>Lo que bloquean su firewall, su antivirus y su sitio web en las últimas 24 horas, y lo que alcanzó a pasar, en una sola tarjeta.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--ambar)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8m-4-4v4"/></svg></div>
+                <h3>Salud del hardware</h3>
+                <p>Discos por dañarse o por llenarse, baterías gastadas, poca memoria y equipos que se apagan solos, antes de que detengan el trabajo.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--azul)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0118 10.5 3.75 3.75 0 0117.25 18H7z"/><path d="M12 12v5m0-5l-2 2m2-2l2 2"/></svg></div>
+                <h3>Copias de seguridad</h3>
+                <p>Confirma que la última copia de cada servidor terminó bien y es reciente. Si una copia falla o se atrasa, usted lo sabe ese mismo día.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--verde)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-9"/><path d="M15 7h5v5"/></svg></div>
+                <h3>Experiencia y tiempo perdido</h3>
+                <p>Cuánto tarda en arrancar cada equipo, qué programas se cierran solos y cuántas horas de trabajo se pierden al mes por equipos lentos.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--morado)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16h5"/></svg></div>
+                <h3>Control de inteligencia artificial</h3>
+                <p>Vea qué servicios de IA se usan en la empresa y bloquee los que no autoriza, para que la información confidencial no salga sin control.</p>
+            </article>
+            <article class="tarjeta ver" style="--c: var(--naranja)">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></div>
+                <h3>Informes y alertas</h3>
+                <p>Alerta inmediata cuando un equipo pasa a estado crítico, resumen semanal e informe mensual en PDF, listo para gerencia o auditoría.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Seguridad -->
+<section id="seguridad" class="franja">
+    <div class="contenedor">
+        <div class="bloque">
+            <div class="ver">
+                <span class="etiqueta">Seguridad</span>
+                <h2>Sepa primero qué arreglar, no solo qué está mal</h2>
+                <p class="sub" style="margin-top:14px">Una empresa puede tener cientos de actualizaciones pendientes. Argus las ordena por lo que de verdad importa: lo que los atacantes ya están usando.</p>
+                <ul class="puntos">
+                    <li><span><b>Prioridad real.</b> Cruza sus equipos con el catálogo oficial de fallas explotadas y con la probabilidad de ataque de cada una.</span></li>
+                    <li><span><b>Ataques a la vista.</b> Intentos de intrusión, virus detenidos y contraseñas probadas, con lo bloqueado en verde y lo que pasó en rojo.</span></li>
+                    <li><span><b>Puntaje de protección.</b> Un porcentaje por empresa que resume antivirus, cifrado, firewall y accesos, para ver si mejora mes a mes.</span></li>
+                    <li><span><b>Correo protegido.</b> Revisa que su dominio tenga SPF, DKIM y DMARC, las defensas contra la suplantación de correos.</span></li>
+                </ul>
+            </div>
+            <div class="ver">
+                <div class="maqueta" role="img" aria-label="Tarjetas de ataques y de fallas explotadas, con datos de demostración">
+                    <div class="maqueta-cuerpo">
+                        <div class="t" style="--c: var(--rojo)">
+                            <h4>Ataques en las últimas 24 horas</h4>
+                            <div class="fila dos" style="align-items:center">
+                                <div>
+                                    <div class="barras" style="height:70px"><span style="height:35%"></span><span style="height:20%"></span><span style="height:62%"></span><span style="height:44%"></span><span class="r" style="height:54%"></span><span style="height:80%"></span><span style="height:30%"></span><span style="height:95%"></span><span style="height:58%"></span><span style="height:40%"></span><span style="height:72%"></span><span style="height:26%"></span></div>
+                                    <small><i class="p" style="--c: var(--verde)"></i>Bloqueados <b style="color:var(--texto)">214</b> &nbsp; <i class="p" style="--c: var(--rojo)"></i>Sin bloquear <b style="color:var(--texto)">1</b></small>
+                                </div>
+                                <div class="lista">
+                                    <div><b>Intrusión sin bloquear</b><span>FIREWALL-PRINCIPAL · hace 3 h</span></div>
+                                    <div style="--c: var(--verde)"><b>Escáner de internet</b><span>FIREWALL-PRINCIPAL · bloqueado</span></div>
+                                    <div style="--c: var(--verde)"><b>Contraseñas probadas</b><span>SRV-ARCHIVOS · bloqueado</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fila dos">
+                            <div class="t" style="--c: var(--rojo)">
+                                <h4>Fallas que se están atacando</h4>
+                                <div style="display:flex;gap:14px;align-items:center">
+                                    <div class="grande" style="color: var(--rojo)">3</div>
+                                    <div class="lista" style="min-width:0">
+                                        <div><b>Windows en PC-RECEPCION-01</b><span>Falla usada por ransomware</span></div>
+                                        <div><b>Navegador en PC-CONTABILIDAD-02</b><span>Corregida en la versión nueva</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="t" style="--c: var(--ambar)">
+                                <h4>Actualizaciones de Windows</h4>
+                                <div class="medida" style="--v: 78%; --c: var(--verde)">Al día<i></i>31</div>
+                                <div class="medida" style="--v: 22%; --c: var(--ambar)">Atrasadas<i></i>7</div>
+                                <div class="medida" style="--v: 8%; --c: var(--rojo)">Sin soporte<i></i>2</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="demo">Datos de demostración.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Productividad -->
+<section id="productividad">
+    <div class="contenedor">
+        <div class="bloque inverso">
+            <div class="ver">
+                <span class="etiqueta">Productividad</span>
+                <h2>Los equipos lentos también cuestan plata</h2>
+                <p class="sub" style="margin-top:14px">Argus mide lo que sus empleados viven todos los días y lo convierte en horas: cuánto tiempo de trabajo se pierde y qué equipo lo causa.</p>
+                <ul class="puntos">
+                    <li><span><b>Puntaje de experiencia.</b> De 0 a 100 por equipo: arranque, programas que fallan, recursos y batería.</span></li>
+                    <li><span><b>Vida útil y renovación.</b> Qué equipos siguen vigentes, cuáles se pueden mejorar y cuáles hay que cambiar este año y el próximo.</span></li>
+                    <li><span><b>Equipos sin uso.</b> Los que llevan semanas sin encenderse, para reasignarlos o darlos de baja.</span></li>
+                    <li><span><b>Recomendaciones concretas.</b> «Cambie el disco de estos 4 equipos y recupere 6 horas al mes», no solo gráficas.</span></li>
+                </ul>
+            </div>
+            <div class="ver">
+                <div class="maqueta" role="img" aria-label="Tarjetas de experiencia, tiempo perdido y vida útil, con datos de demostración">
+                    <div class="maqueta-cuerpo">
+                        <div class="fila dos">
+                            <div class="t" style="--c: var(--verde)">
+                                <h4>Experiencia de los equipos</h4>
+                                <svg viewBox="0 0 100 58" style="width:100%;max-width:150px;display:block;margin:auto"><path d="M10 52 A40 40 0 0 1 90 52" fill="none" stroke="#2A313A" stroke-width="9" stroke-linecap="round"/><path d="M10 52 A40 40 0 0 1 90 52" fill="none" stroke="#3FB950" stroke-width="9" stroke-linecap="round" stroke-dasharray="126" stroke-dashoffset="26"/><text x="50" y="50" text-anchor="middle" fill="#E6E7E9" font-size="18" font-weight="700" font-family="Outfit, sans-serif">79</text></svg>
+                                <small style="text-align:center">De 100: arranque, fallas, recursos y batería</small>
+                            </div>
+                            <div class="t" style="--c: var(--ambar)">
+                                <h4>Tiempo perdido</h4>
+                                <div class="grande" style="color: var(--ambar)">≈ 14 h al mes</div>
+                                <small>Lo que más pesa: equipos con disco mecánico. Uno tarda 2 min 40 s en arrancar.</small>
+                            </div>
+                        </div>
+                        <div class="t" style="--c: var(--naranja)">
+                            <h4>Vida útil</h4>
+                            <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin:4px 0 9px"><span style="flex:26;background:var(--verde)"></span><span style="flex:8;background:var(--ambar)"></span><span style="flex:5;background:var(--rojo)"></span></div>
+                            <div class="leyenda" style="grid-auto-flow:column;justify-content:start;gap:16px">
+                                <span><i class="p" style="--c: var(--verde)"></i>Vigentes <b>26</b></span>
+                                <span><i class="p" style="--c: var(--ambar)"></i>Mejorables <b>8</b></span>
+                                <span><i class="p" style="--c: var(--rojo)"></i>Para renovar <b>5</b></span>
+                            </div>
+                            <small>Renovar: 3 este año · 2 el próximo</small>
+                        </div>
+                        <div class="t">
+                            <h4>Recomendación</h4>
+                            <div class="lista"><div style="--c: var(--naranja)"><b>Cambiar a disco sólido 4 equipos</b><span>Recupera cerca de 6 horas de trabajo al mes</span></div></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="demo">Datos de demostración.</p>
+            </div>
+        </div>
+
+        <div class="bloque">
+            <div class="ver">
+                <span class="etiqueta">Inteligencia artificial bajo control</span>
+                <h2>Decida qué IA se usa en su empresa</h2>
+                <p class="sub" style="margin-top:14px">Sus empleados ya usan asistentes de inteligencia artificial. Argus le muestra cuáles y le deja bloquear los que no ha autorizado.</p>
+                <ul class="puntos">
+                    <li><span><b>Qué se usa y en cuántos equipos,</b> sin ver conversaciones ni nombres de personas.</span></li>
+                    <li><span><b>Bloqueo por servicio</b> en los navegadores y en las aplicaciones de escritorio, con un aviso claro al empleado.</span></li>
+                    <li><span><b>Excepciones</b> para los equipos o las áreas que sí lo necesitan.</span></li>
+                </ul>
+            </div>
+            <div class="ver">
+                <div class="maqueta" role="img" aria-label="Control de inteligencia artificial con datos de demostración">
+                    <div class="maqueta-cuerpo">
+                        <div class="t" style="--c: var(--morado)">
+                            <h4>Inteligencia artificial en la empresa</h4>
+                            <div class="servicio"><i class="interruptor"></i><b>Asistente autorizado por la empresa</b><span>18 equipos</span></div>
+                            <div class="servicio"><i class="interruptor si"></i><b>Chat de IA público</b><span>bloqueado · 9 intentos</span></div>
+                            <div class="servicio"><i class="interruptor si"></i><b>Generador de imágenes</b><span>bloqueado</span></div>
+                            <div class="servicio"><i class="interruptor"></i><b>Asistente de programación</b><span>3 equipos</span></div>
+                            <small>2 servicios bloqueados · 1 equipo exento (Gerencia)</small>
+                        </div>
+                    </div>
+                </div>
+                <p class="demo">Datos de demostración.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Profesional -->
+<section id="profesional" class="franja">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Plan Profesional</span>
+            <h2>Además de vigilar, resuelva</h2>
+            <p class="sub" style="margin-top:14px">El plan Profesional suma a todo lo anterior las herramientas para atender a sus usuarios sin salir de Argus.</p>
+        </div>
+        <div class="rejilla">
+            <article class="tarjeta ver">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0116 0"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19c0 1.5-2 2.5-5 2.5"/></svg></div>
+                <h3>Mesa de ayuda</h3>
+                <p>Cada empleado pide ayuda desde un ícono junto al reloj de Windows, con capturas de pantalla. El caso llega con el equipo y el usuario ya identificados.</p>
+                <div class="maqueta" style="margin-top:18px;box-shadow:none">
+                    <div class="maqueta-cuerpo chat">
+                        <span class="pastilla" style="--c: var(--naranja)">● Pendiente de su respuesta</span>
+                        <div class="burbuja mia"><small>Usuario · 8:12</small>No me abre el correo desde esta mañana.</div>
+                        <div class="burbuja"><small>Soporte de TI · 8:20</small>Ya lo revisamos. ¿Puede cerrarlo y abrirlo de nuevo?</div>
+                    </div>
+                </div>
+            </article>
+            <article class="tarjeta ver">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8m-4-4v4M9 10l2 2 4-4"/></svg></div>
+                <h3>Soporte remoto</h3>
+                <p>Conéctese al equipo del usuario con un clic desde su ficha. La contraseña la gestiona Argus y cada conexión queda registrada: quién, a qué equipo y cuándo.</p>
+                <div class="maqueta" style="margin-top:18px;box-shadow:none">
+                    <div class="maqueta-cuerpo">
+                        <div class="servicio"><b>Conexión</b><span class="pastilla" style="--c: var(--verde); margin-left:auto">● Equipo en línea</span></div>
+                        <div class="servicio"><b>Contraseña</b><span>Gestionada por Argus</span></div>
+                        <div class="servicio"><b>Permisos</b><span>Solo pantalla y teclado</span></div>
+                    </div>
+                </div>
+            </article>
+            <article class="tarjeta ver">
+                <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3zM18.5 15l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z"/></svg></div>
+                <h3>Asistente de IA</h3>
+                <p>Pregúntele a Argus como a un técnico: «¿qué es lo más urgente?». Responde con los datos de sus equipos y un enlace a cada uno. Solo lee: no cambia nada.</p>
+                <div class="maqueta" style="margin-top:18px;box-shadow:none">
+                    <div class="maqueta-cuerpo chat">
+                        <div class="burbuja mia">¿Qué es lo más urgente hoy?</div>
+                        <div class="burbuja">Actualice el navegador de <b style="color:var(--naranja)">PC-CONTABILIDAD-02</b>: tiene una falla que ya se está atacando. Después, 3 equipos sin cifrado de disco.</div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Cómo funciona -->
+<section id="como">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Cómo funciona</span>
+            <h2>En marcha en minutos, sin servidores nuevos</h2>
+        </div>
+        <div class="pasos">
+            <div class="paso ver"><h3>Instale el agente</h3><p>Un programa liviano en cada computador o servidor Windows. Se puede instalar uno por uno o en toda la empresa a la vez.</p></div>
+            <div class="paso ver"><h3>Conecte lo demás</h3><p>Firewall, almacenamiento, servidores de virtualización, sitios web, Microsoft Intune y copias en la nube, con accesos de solo lectura.</p></div>
+            <div class="paso ver"><h3>Abra el panel</h3><p>Desde cualquier navegador o desde el celular. Las alertas le llegan por correo y cada mes recibe el informe en PDF.</p></div>
+        </div>
+        <div class="integra ver">
+            <span>Windows y Windows Server</span><span>Microsoft Intune</span><span>Azure Backup</span><span>FortiGate</span><span>Kaspersky</span><span>Microsoft Defender</span><span>Cloudflare</span><span>VMware ESXi</span><span>QNAP</span><span>Servidores HPE iLO</span><span>WordPress</span><span>Certificados SSL</span>
+        </div>
+    </div>
+</section>
+
+<!-- Planes -->
+<section id="planes" class="franja">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Planes</span>
+            <h2>Elija cómo quiere cuidar sus equipos</h2>
+            <p class="sub" style="margin-top:14px">Los dos planes vigilan todo su parque. El Profesional le agrega las herramientas para atender a sus usuarios.</p>
+        </div>
+        <div class="planes">
+            <div class="plan ver">
+                <h3>Estándar</h3>
+                <p class="para">Para saber, todos los días, cómo están sus equipos y qué hay que hacer.</p>
+                <div class="precio">Precio según el número de equipos<small>Solicite su cotización sin compromiso.</small></div>
+                <ul>
+                    <li><span><b>Panel completo</b> de computadores, servidores, firewalls y sitios web</span></li>
+                    <li><span><b>Actualizaciones, fin de soporte y vulnerabilidades</b> que se están atacando</span></li>
+                    <li><span><b>Protección:</b> antivirus, cifrado, firewall y copias de seguridad</span></li>
+                    <li><span><b>Ataques</b> de las últimas 24 horas</span></li>
+                    <li><span><b>Hardware, experiencia, tiempo perdido y vida útil</b></span></li>
+                    <li><span><b>Control de inteligencia artificial</b></span></li>
+                    <li><span><b>Alertas, resumen semanal e informe mensual</b> en PDF</span></li>
+                    <li><span><b>Usuarios con roles</b> y registro de auditoría</span></li>
+                </ul>
+                <a class="boton borde" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20cotizar%20Argus%20Est%C3%A1ndar" target="_blank" rel="noopener">Cotizar Estándar</a>
+            </div>
+            <div class="plan destacado ver">
+                <span class="cinta">El más completo</span>
+                <h3>Profesional</h3>
+                <p class="para">Para vigilar y, además, atender a sus usuarios desde el mismo lugar.</p>
+                <div class="precio">Precio según el número de equipos<small>Incluye todo lo del plan Estándar.</small></div>
+                <ul>
+                    <li><span><b>Todo lo del plan Estándar</b></span></li>
+                    <li class="mas"><span><b>Mesa de ayuda</b> desde el equipo de cada empleado, con capturas y seguimiento de casos</span></li>
+                    <li class="mas"><span><b>Soporte remoto</b> con un clic, contraseña gestionada y cada conexión registrada</span></li>
+                    <li class="mas"><span><b>Asistente de IA</b> que responde preguntas sobre sus equipos</span></li>
+                </ul>
+                <a class="boton principal" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20cotizar%20Argus%20Profesional" target="_blank" rel="noopener">Cotizar Profesional</a>
+            </div>
+        </div>
+
+        <div class="tabla-caja ver">
+            <table>
+                <thead><tr><th>Qué incluye</th><th>Estándar</th><th>Profesional</th></tr></thead>
+                <tbody>
+                    <tr class="grupo"><td colspan="3">Vigilancia</td></tr>
+                    <tr><td>Panel, empresas y ficha de cada equipo</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Actualizaciones y fin de soporte</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Vulnerabilidades que se están atacando</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Antivirus, cifrado, firewall y copias</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Ataques de las últimas 24 horas</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Hardware, experiencia y vida útil</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Control de inteligencia artificial</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Alertas por correo e informes en PDF</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr><td>Buscador de todo Argus</td><td class="si">✓</td><td class="si">✓</td></tr>
+                    <tr class="grupo"><td colspan="3">Atención a los usuarios</td></tr>
+                    <tr><td>Mesa de ayuda desde cada equipo</td><td class="no">—</td><td class="si">✓</td></tr>
+                    <tr><td>Soporte remoto con un clic</td><td class="no">—</td><td class="si">✓</td></tr>
+                    <tr><td>Asistente de IA</td><td class="no">—</td><td class="si">✓</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Confianza -->
+<section id="confianza">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Sus datos, a salvo</span>
+            <h2>Una herramienta de seguridad tiene que ser segura</h2>
+        </div>
+        <div class="seguro">
+            <div class="ver"><b>Solo conexiones salientes</b><span>El agente nunca abre puertos en sus equipos: es él quien se comunica con Argus, siempre cifrado.</span></div>
+            <div class="ver"><b>Datos separados por empresa</b><span>La información de cada organización está aislada: nadie más puede verla.</span></div>
+            <div class="ver"><b>Todo queda registrado</b><span>Un registro de auditoría guarda quién hizo qué y cuándo, y no se puede alterar sin que se note.</span></div>
+            <div class="ver"><b>Sin leer sus archivos</b><span>Argus mira el estado de los equipos, no el contenido de documentos, correos ni conversaciones.</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Preguntas -->
+<section id="preguntas" class="franja">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Preguntas frecuentes</span>
+            <h2>Lo que nos preguntan antes de empezar</h2>
+        </div>
+        <div class="faq">
+            <details class="ver"><summary>¿Necesito comprar un servidor o instalar algo complicado?</summary><p>No. Argus funciona en la nube: usted solo instala un agente liviano en cada equipo Windows y entra al panel desde el navegador. Para firewalls y otros equipos de red se usa un recolector que corre en uno de sus propios equipos.</p></details>
+            <details class="ver"><summary>¿El agente vuelve lentos los equipos?</summary><p>No. Trabaja en segundo plano, usa muy pocos recursos y no interrumpe al usuario.</p></details>
+            <details class="ver"><summary>¿Argus puede ver lo que hacen mis empleados?</summary><p>Argus vigila el estado de los equipos, no su contenido: no lee archivos, correos ni conversaciones. El análisis de uso de equipos es un módulo aparte que solo se activa si la empresa lo pide y cumple los requisitos legales de tratamiento de datos.</p></details>
+            <details class="ver"><summary>¿Sirve si ya tengo antivirus y firewall?</summary><p>Sí, y es lo ideal. Argus no los reemplaza: revisa que estén funcionando en todos los equipos y junta en un solo lugar lo que cada uno detecta.</p></details>
+            <details class="ver"><summary>¿Puedo empezar con Estándar y pasar después a Profesional?</summary><p>Sí. El cambio se hace sin reinstalar nada: las funciones del plan Profesional se activan sobre los mismos equipos.</p></details>
+            <details class="ver"><summary>¿Quién me acompaña en la instalación?</summary><p>El equipo de Tecnología Naranja Digital, en Colombia y en español. Lo acompañamos a instalar, a conectar sus equipos y a leer los primeros informes.</p></details>
+        </div>
+    </div>
+</section>
+
+<!-- Cierre -->
+<section class="cierre">
+    <div class="contenedor ver">
+        <h2>Vea Argus con los equipos de su empresa</h2>
+        <p class="sub" style="margin: 16px auto 0">Le mostramos la plataforma en una reunión corta y le decimos, sin compromiso, qué plan le conviene.</p>
+        <div class="acciones">
+            <a class="boton principal" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20una%20demostraci%C3%B3n%20de%20Argus" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="boton borde" href="https://tecnologianaranja.digital/contacto">Ir a Contacto</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="contenedor">
+        <span><b style="color:var(--texto)">Argus</b> es un producto de <a href="https://tecnologianaranja.digital/" style="color:var(--naranja)">Tecnología Naranja Digital</a>.</span>
+        <span><a href="https://wa.me/573193164027" target="_blank" rel="noopener">WhatsApp +57 319 316 4027</a></span>
+        <span>© <span id="anio">2026</span> Tecnología Naranja Digital</span>
+    </div>
+</footer>
+
+<script>
+// El menú del celular, el año del pie y la aparición suave de cada bloque al bajar.
+document.documentElement.classList.add("js");
+const boton = document.querySelector(".abrir-menu"), menu = document.getElementById("menu");
+boton.addEventListener("click", () => boton.setAttribute("aria-expanded", menu.classList.toggle("abierto")));
+menu.addEventListener("click", e => { if (e.target.tagName === "A") { menu.classList.remove("abierto"); boton.setAttribute("aria-expanded", "false"); } });
+document.getElementById("anio").textContent = new Date().getFullYear();
+if ("IntersectionObserver" in window) {
+    const ojo = new IntersectionObserver(vistos => vistos.forEach(v => { if (v.isIntersecting) { v.target.classList.add("visto"); ojo.unobserve(v.target); } }), { threshold: .12 });
+    document.querySelectorAll(".ver").forEach(e => ojo.observe(e));
+    // Respaldo: si el observador no funcionó (nada apareció en un momento), se muestra todo.
+    setTimeout(() => { if (!document.querySelector(".ver.visto")) document.querySelectorAll(".ver").forEach(e => e.classList.add("visto")); }, 1200);
+} else document.querySelectorAll(".ver").forEach(e => e.classList.add("visto"));
+</script>
+</body>
+</html>
