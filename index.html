@@ -186,6 +186,16 @@ details p { color: var(--tenue); padding-bottom: 18px; }
 /* Cierre y pie. */
 .cierre { text-align: center; padding: 90px 0; background: radial-gradient(700px 320px at 50% 0%, rgba(236, 130, 0, .2), transparent 70%); }
 .cierre .acciones { justify-content: center; margin-top: 28px; }
+/* Video de presentación: horizontal en pantallas anchas, vertical en celulares de pie (solo se descarga el que se reproduce). */
+.video-marco { max-width: 960px; margin: 36px auto 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--linea); background: #000; box-shadow: 0 30px 80px rgba(0, 0, 0, .45), 0 0 0 1px rgba(236, 130, 0, .08); }
+.video-marco video { display: block; width: 100%; height: auto; background: #000; }
+.video-marco .video-vertical { display: none; }
+.video-nota { text-align: center; color: var(--tenue); font-size: .9rem; margin-top: 14px; }
+@media (max-width: 600px) and (orientation: portrait) {
+    .video-marco .video-horizontal { display: none; }
+    .video-marco .video-vertical { display: block; }
+    .video-marco { max-width: 400px; }
+}
 footer { border-top: 1px solid var(--linea); padding: 34px 0 44px; color: var(--tenue); font-size: .9rem; }
 footer .contenedor { display: flex; flex-wrap: wrap; gap: 16px 34px; align-items: center; justify-content: space-between; }
 footer a:hover { color: var(--naranja); }
@@ -227,6 +237,7 @@ footer a:hover { color: var(--naranja); }
             <span><b>ARGUS</b><small>by TND</small></span>
         </a>
         <nav class="menu" id="menu">
+            <a href="#video">Video</a>
             <a href="#vigila">Qué vigila</a>
             <a href="#seguridad">Seguridad</a>
             <a href="#productividad">Productividad</a>
@@ -253,7 +264,7 @@ footer a:hover { color: var(--naranja); }
             <p class="sub">Argus revisa cada computador, servidor, firewall y sitio web y le dice, en lenguaje claro, qué está en riesgo, qué hay que actualizar y qué le está costando tiempo a su equipo.</p>
             <div class="acciones">
                 <a class="boton principal" href="https://wa.me/573193164027?text=Hola%2C%20quiero%20una%20demostraci%C3%B3n%20de%20Argus" target="_blank" rel="noopener">Solicitar una demostración</a>
-                <a class="boton borde" href="#planes">Ver los planes</a>
+                <a class="boton borde" href="#video"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Ver el video</a>
             </div>
             <div class="confianza">
                 <span>Sin servidores que instalar</span>
@@ -321,6 +332,26 @@ footer a:hover { color: var(--naranja); }
         <div class="pregunta ver"><b>¿Qué hay que actualizar?</b><span>Sistemas y programas atrasados o que ya no tienen soporte del fabricante.</span></div>
         <div class="pregunta ver"><b>¿Estamos protegidos?</b><span>Antivirus, cifrado de discos, firewall y copias de seguridad, equipo por equipo.</span></div>
         <div class="pregunta ver"><b>¿Qué equipos hay que renovar?</b><span>Cuáles hacen perder tiempo y cuándo conviene cambiarlos, para presupuestar.</span></div>
+    </div>
+</section>
+
+<!-- Video de presentación -->
+<section id="video">
+    <div class="contenedor">
+        <div class="centro ver">
+            <span class="etiqueta">Argus en 52 segundos</span>
+            <h2>Lo que pasa en su red mientras nadie está mirando</h2>
+            <p class="sub" style="margin-top:14px">Un minuto para ver por qué vigilar los equipos de su empresa ya no es opcional, y cómo Argus lo hace por usted.</p>
+        </div>
+        <div class="video-marco ver">
+            <video class="video-horizontal" controls playsinline preload="none" poster="video/argus-ventas.jpg" aria-label="Video de presentación de Argus, 52 segundos">
+                <source src="video/argus-ventas.mp4" type="video/mp4">
+            </video>
+            <video class="video-vertical" controls playsinline preload="none" poster="video/argus-ventas-vertical.jpg" aria-label="Video de presentación de Argus, 52 segundos, formato vertical">
+                <source src="video/argus-ventas-vertical.mp4" type="video/mp4">
+            </video>
+        </div>
+        <p class="video-nota">Video con sonido · Las pantallas usan datos de demostración.</p>
     </div>
 </section>
 
